@@ -2,7 +2,7 @@
 gKanaPass is a python learning project which generates kana-style passwords.
 
 ![xkcd](https://raw.githubusercontent.com/yafp/gkanapass/master/doc/xkcd_936_password_strength.png)
-
+https://xkcd.com/936/
 
 # How to use
 To generate a password with default length
