@@ -8,21 +8,27 @@ You might ask
 
 I was in need for a python playground, simple as that.
 
+## Install / Uninstall
+- Unpack the archive
+- navigate to folder which contains this README.md
+- Install by running:
+> sudo make install
+
+Uninstall by running:
+> sudo make Uninstall
+
 
 ## Usage
 To display the general help:
-> ./gkanapass.py -h
+> gkanapass -h
 
 To generate passwords with default length (10)
-> ./gkanapass.py
-
-or
-> python /path/to/gkanapass.py
+> gkanapass
 
 To generate passwords with user-defined length (14)
-> ./gkanapass.py 14
+> gkanapass 14
 
-__Be aware: __  gkanapass is forcing a min password length of 8.
+__Be aware:__  gkanapass is forcing a min password length of 8.
 
 
 ## xkcd/936 (password strength)
