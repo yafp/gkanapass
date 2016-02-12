@@ -5,7 +5,7 @@
 # Function:		a python based password generator with focus on japanese/kana-style passwords
 #               https://en.wikipedia.org/wiki/Kana
 #               https://xkcd.com/936/
-# Date:			20160211
+# Date:			20160212
 # Author: 		yafp
 
 
@@ -24,7 +24,8 @@ import sys			# for handling arguments
 
 #=========================     VARIABLES     ===================================
 appName="gkanapass"
-appVersion="20160211.01"
+appDescription="gkanapass is a python based password generator influenced by kana"
+appVersion="20160212.01"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -35,10 +36,10 @@ def clearScreen():
 		os.system('cls')
 
 
-def printHead(str):
+def printHead(title):
 	clearScreen()
 	print ("------------------------------------------------")
-	print (" \033[1m"+ appName + "\033[0m - (" + appVersion +") - " + str)
+	print (" \033[1m"+ appName + "\033[0m - (" + appVersion +") - " + title)
 	print ("------------------------------------------------\n")
 	return;
 
@@ -48,13 +49,13 @@ def validateArguments():
 	#print 'Argument List:', str(sys.argv)
 
 	if len(sys.argv) < 2: # no user argument available
-		length="10"
+		length="10"				# default length
 
-	elif (sys.argv[1]=="-v"):
+	elif (sys.argv[1]=="-v"):	# version
 		displayVersion()
 		sys.exit()
 
-	elif (sys.argv[1]=="-h"):
+	elif (sys.argv[1]=="-h"):	# help
 		displayHelp()
 		sys.exit()
 
@@ -62,16 +63,15 @@ def validateArguments():
 		length=sys.argv[1]
 		try:
 			if int(float(length))<8: # check if argument is smaller 8
-				length="8"
-		except:	# invalid parameter (not a number) - jump back to default
-			length="10"
+				length="8"		# force to min length
+		except BaseException:	# invalid parameter (not a number) - jump back to default
+			length="10"			# default length
 
 	return length;
 
 
 def generateKanaPass(length):
-	printHead("Generated passwords")
-	print (" Length: "+str(length)+"\n")
+	printHead("Passwords")
 
 	# define some symbol-pools
 	charPoolConsonantKana = ['k','s','t','n','h','m','y','r','w']		# kana consonants
@@ -80,11 +80,10 @@ def generateKanaPass(length):
 	charPoolNumbers = ['1','2','3','4','5','6','7','8','9','0']			# numbers
 	charPoolSpecials = ['#','+','-','_','.','?','!',"&"]				# specials
 
-
-	for i in range (1,11): # generate 10 passwords
+	for i in range (0,10): # generate 10 passwords
 		generatedPassword='' # start with an empty password
 
-		for num in range (0,length): # build single passwords
+		for generateRandomPair in range (0,length): # build single passwords
 			randomNumber=random.randrange(1,100) # generate a random number between 1 and 100 - based on that we randomize the password-generation
 
 			if randomNumber>90: 		# lowercase consonants kana + special
@@ -111,29 +110,31 @@ def generateKanaPass(length):
 			else: 						# lowercase consonants kana & lowercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolVocal)
 
-		# hack:
-		# user-defined length might be odd
+		# user-defined password length might be odd
 		# generated password is always even and too long
 		# -> cut to defined length
 		generatedPassword=generatedPassword[:int(float(length))]
 
 		# output the generated password
-		print (" " + generatedPassword)
+		print (str(i) + ": " + generatedPassword)
 
 
 def displayHelp():
 	printHead("Help")
+	print ("ABOUT:")
+	print ("\t"+appDescription+"\n")
 	print ("CORE:")
-	print ("./pkanapass\t\tGenerates 10 passwords with default length (10)")
-	print ("./pkanapass 14\t\tGenerates 10 passwords with user-defined length (14)")
+	print ("\tpkanapass\tGenerates 10 passwords with default length (10)")
+	print ("\tpkanapass 14\tGenerates 10 passwords with user-defined length (14)")
 	print ("\nMISC:")
-	print ("./pkanapass -h\t\tDisplay this help dialog")
-	print ("./pkanapass -v\t\tDisplay application version")
+	print ("\tpkanapass -h\tDisplay this help dialog")
+	print ("\tpkanapass -v\tDisplay application version")
 
 
 def displayVersion():
 	printHead("Version")
-	print ("Version: " + appVersion)
+	print ("VERSION:")
+	print ("\t" + appVersion)
 
 
 #========================     MAIN SCRIPT     ==================================
