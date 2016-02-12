@@ -1,3 +1,5 @@
+[![Code Health](https://landscape.io/github/yafp/gkanapass/master/landscape.svg?style=flat)](https://landscape.io/github/yafp/gkanapass/master)
+
 # gkanapass
 ## About
 gkanapass is a python based password generator influenced by [kana](https://en.wikipedia.org/wiki/Kana)
