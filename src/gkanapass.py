@@ -25,7 +25,7 @@ import sys			# for handling arguments
 #=========================     VARIABLES     ===================================
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
-appVersion="20160212.02"
+appVersion="20160212.03"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -83,9 +83,7 @@ def generateKanaPass(length):
 	for i in range (0,10): # generate 10 passwords
 		generatedPassword='' # start with an empty password
 
-		for _generateRandomPair in range (0,length): # build single passwords
-			randomNumber=random.randrange(1,100) # generate a random number between 1 and 100 - based on that we randomize the password-generation
-
+		for dummy in range (0,length): # build single_generateRandomPair
 			if randomNumber>90: 		# lowercase consonants kana + special
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolSpecials)
 
