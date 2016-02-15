@@ -1,6 +1,9 @@
 [![Code Health](https://landscape.io/github/yafp/gkanapass/master/landscape.svg?style=flat)](https://landscape.io/github/yafp/gkanapass/master)
 
 # gkanapass
+![xkcd](https://raw.githubusercontent.com/yafp/gkanapass/master/doc/xkcd_936_password_strength.png)
+https://xkcd.com/936/
+
 ## About
 gkanapass is a python based password generator influenced by [kana](https://en.wikipedia.org/wiki/Kana)
 
@@ -31,12 +34,9 @@ To generate passwords with default length (10)
 To generate passwords with user-defined length (14)
 > gkanapass 14
 
+![Usage](https://raw.githubusercontent.com/yafp/gkanapass/master/doc/gkanapass_usage_optimized.gif)
+
 __Be aware:__  gkanapass is forcing a min password length of 8.
-
-
-## xkcd/936 (password strength)
-https://xkcd.com/936/
-![xkcd](https://raw.githubusercontent.com/yafp/gkanapass/master/doc/xkcd_936_password_strength.png)
 
 
 ## Supported platforms
