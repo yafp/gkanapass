@@ -1,6 +1,9 @@
 [![Code Health](https://landscape.io/github/yafp/gkanapass/master/landscape.svg?style=flat)](https://landscape.io/github/yafp/gkanapass/master)
+[![License](https://img.shields.io/badge/license-GPL3-brightgreen.svg)](LICENSE)
 
-# gkanapass
+ gkanapass
+==========
+
 ![xkcd](https://raw.githubusercontent.com/yafp/gkanapass/master/doc/xkcd_936_password_strength.png)
 https://xkcd.com/936/
 
