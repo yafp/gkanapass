@@ -5,7 +5,7 @@
 # Function:		a python based password generator with focus on japanese/kana-style passwords
 #               https://en.wikipedia.org/wiki/Kana
 #               https://xkcd.com/936/
-# Date:			20160212
+# Date:			20160222
 # Author: 		yafp
 
 

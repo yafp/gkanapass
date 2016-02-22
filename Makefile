@@ -21,7 +21,7 @@ install:
 	@mkdir -vp $(DATAPATH)
 	@install -v -D -m 0644 LICENSE $(DATAPATH)/LICENSE
 	@install -v -D -m 0644 README.md $(DATAPATH)/README.md
-	#@install -D -m 0644 $(DOC)/$(MANFILE) $(MANPATH)/$(MANFILE)
+	@install -D -m 0644 $(DOC)/$(MANFILE) $(MANPATH)/$(MANFILE)
 
 uninstall:
 	$(info )
