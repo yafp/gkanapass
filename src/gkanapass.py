@@ -5,7 +5,7 @@
 # Function:		a python based password generator with focus on japanese/kana-style passwords
 #               https://en.wikipedia.org/wiki/Kana
 #               https://xkcd.com/936/
-# Date:			20160222
+# Date:			20160408
 # Author: 		yafp
 
 
@@ -25,7 +25,8 @@ import sys			# for handling arguments
 #=========================     VARIABLES     ===================================
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
-appVersion="20160212.04"
+appDevURL="https://github.com/yafp/gkanapass"
+appVersion="20160408.01"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -86,26 +87,26 @@ def generateKanaPass(length):
 		for dummy in range (0,length): # build single_generateRandomPair
 			randomNumber=random.randrange(1,100) # generate a random number between 1 and 100 - based on that we randomize the password-generation
 
-			if randomNumber>90: 		# lowercase consonants kana + special
+			if randomNumber>95: 		# lowercase consonants kana + special
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolSpecials)
 
-			#elif randomNumber>90: 		# uppercase consonants kana + number
-				#generatedPassword=generatedPassword+random.choice(charPoolConsonantKana).upper()+random.choice(charPoolNumbers)
+			elif randomNumber>90:		# uppercase consonants similar & uppercase vocal
+				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar).upper()+random.choice(charPoolVocal).upper()
 
-			elif randomNumber>85: 		# lowercase consonants kana + number
+			elif randomNumber>85: 		# uppercase consonants kana + number
+				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana).upper()+random.choice(charPoolNumbers)
+
+			elif randomNumber>80: 		# lowercase consonants kana + number
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolNumbers)
-
-			#elif randomNumber>80:		# lowercase consonants similar & lowercase vocal
-				#generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal)
-
-			elif randomNumber>80:		# lowercase kana similar & uppercase vocal
-				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal).upper()
 
 			elif randomNumber>75:		# uppercase consonants kana & lowercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar).upper()+random.choice(charPoolVocal)
 
-			#elif randomNumber>65:		# uppercase consonants similar & uppercase vocal
-				#generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar).upper()+random.choice(charPoolVocal).upper()
+			elif randomNumber>60:		# lowercase consonants similar & lowercase vocal
+				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal)
+
+			elif randomNumber>50:		# lowercase kana similar & uppercase vocal
+				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal).upper()
 
 			else: 						# lowercase consonants kana & lowercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolVocal)
@@ -122,7 +123,8 @@ def generateKanaPass(length):
 def displayHelp():
 	printHead("Help")
 	print ("ABOUT:")
-	print ("\t"+appDescription+"\n")
+	print ("\t"+appDescription)
+	print ("\t"+appDevURL+"\n")
 	print ("CORE:")
 	print ("\tpkanapass\tGenerates 10 passwords with default length (10)")
 	print ("\tpkanapass 14\tGenerates 10 passwords with user-defined length (14)")
