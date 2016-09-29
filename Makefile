@@ -10,7 +10,7 @@ SRCFILE=gkanapass.py
 DESTFILE=gkanapass
 DOC=doc
 MANPATH=$(PREFIX)/share/man/man1
-MANFILE=gkanapass1.gz
+MANFILE=gkanapass.1.gz
 DATAPATH=$(PREFIX)/share/gkanapass
 
 
