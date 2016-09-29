@@ -5,7 +5,7 @@
 # Function:		a python based password generator with focus on japanese/kana-style passwords
 #               https://en.wikipedia.org/wiki/Kana
 #               https://xkcd.com/936/
-# Date:			20160408
+# Date:			20160929.01
 # Author: 		yafp
 
 
@@ -26,7 +26,7 @@ import sys			# for handling arguments
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
 appDevURL="https://github.com/yafp/gkanapass"
-appVersion="20160408.01"
+appVersion="20160929.01"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -38,7 +38,7 @@ def clearScreen():
 
 
 def printHead(title):
-	clearScreen()
+	#clearScreen()
 	print ("------------------------------------------------")
 	print (" \033[1m"+ appName + "\033[0m - (" + appVersion +") - " + title)
 	print ("------------------------------------------------\n")
@@ -48,31 +48,39 @@ def printHead(title):
 def validateArguments():
 	#print 'Number of arguments:', len(sys.argv), 'arguments.'
 	#print 'Argument List:', str(sys.argv)
+	
+	pwLengthInfo="unset"
 
 	if len(sys.argv) < 2: # no user argument available
+		pwLengthInfo="Password length: 10 (default)"
 		length="10"				# default length
 
 	elif (sys.argv[1]=="-v"):	# version
-		displayVersion()
+		displayVersion()	# display version informations
 		sys.exit()
 
-	elif (sys.argv[1]=="-h"):	# help
-		displayHelp()
+	elif (sys.argv[1]=="-h"):	# help 
+		displayHelp()	# display help informations
 		sys.exit()
 
 	else: # user entered an argument - check it
 		length=sys.argv[1]
 		try:
-			if int(float(length))<8: # check if argument is smaller 8
+			if int(float(length))>7: # if argument is bigger then 7 -> good
+				pwLengthInfo="Password length: "+length
+			
+			if int(float(length))<8: # check if argument is smaller 8 -> bad
 				length="8"		# force to min length
+				pwLengthInfo="Password length 8 (forced minimal value)"
 		except BaseException:	# invalid parameter (not a number) - jump back to default
+			pwLengthInfo="Password length: 10 (forcing default value)"
 			length="10"			# default length
 
+	print pwLengthInfo+"\n"
 	return length;
 
 
 def generateKanaPass(length):
-	printHead("Passwords")
 
 	# define some symbol-pools
 	charPoolConsonantKana = ['k','s','t','n','h','m','y','r','w']		# kana consonants
@@ -112,15 +120,15 @@ def generateKanaPass(length):
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolVocal)
 
 		# user-defined password length might be odd
-		# generated password is always even and too long
-		# -> cut to defined length
+		# generated password is always even and too long -> cut generated to defined length
 		generatedPassword=generatedPassword[:int(float(length))]
 
-		# output the generated password
+		# output the generated and cutted password
 		print (str(i) + ": " + generatedPassword)
 
 
 def displayHelp():
+	clearScreen()
 	printHead("Help")
 	print ("ABOUT:")
 	print ("\t"+appDescription)
@@ -134,12 +142,15 @@ def displayHelp():
 
 
 def displayVersion():
+	clearScreen()
 	printHead("Version")
 	print ("VERSION:")
 	print ("\t" + appVersion)
 
 
 #========================     MAIN SCRIPT     ==================================
+clearScreen() # clear the screen
+printHead("Passwords") # output a head containing appname, version etc
 intLength=int(float(validateArguments())) # validate argument & parse to int
 generateKanaPass(intLength)	# Generate 10 passwords with defined length
 #==========================     THE END     ====================================
