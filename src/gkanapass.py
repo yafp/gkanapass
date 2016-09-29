@@ -26,7 +26,7 @@ import sys			# for handling arguments
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
 appDevURL="https://github.com/yafp/gkanapass"
-appVersion="20160929.01"
+appVersion="20160929.02"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -76,7 +76,7 @@ def validateArguments():
 			pwLengthInfo="Password length: 10 (forcing default value)"
 			length="10"			# default length
 
-	print pwLengthInfo+"\n"
+	print (pwLengthInfo+"\n")
 	return length;
 
 
