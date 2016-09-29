@@ -26,7 +26,7 @@ import sys			# for handling arguments
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
 appDevURL="https://github.com/yafp/gkanapass"
-appVersion="20160929.04"
+appVersion="20160929.05"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -87,7 +87,7 @@ def generateKanaPass(length):
 	charPoolConsonantSimilar = ['d','f','l','p','v']					# non-kana consonants
 	charPoolVocal = ['a','e','i','o','u']								# vocals
 	charPoolNumbers = ['1','2','3','4','5','6','7','8','9','0']			# numbers
-	charPoolSpecials = ['#','+','-','_','.','?','!',"&"]				# specials
+	charPoolSpecials = ['#','+','-','_','.','?','!',"&",";","@","<",">","~","%","$","|"]				# specials
 
 	for i in range (0,10): # generate 10 passwords
 		generatedPassword='' # start with an empty password
