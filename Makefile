@@ -10,7 +10,7 @@ SRCFILE=gkanapass.py
 DESTFILE=gkanapass
 DOC=doc
 MANPATH=$(PREFIX)/share/man/man1
-MANFILE=gkanapass.1.gz
+MANFILE=gkanapass1.gz
 DATAPATH=$(PREFIX)/share/gkanapass
 
 
@@ -21,7 +21,7 @@ install:
 	@mkdir -vp $(DATAPATH)
 	@install -v -D -m 0644 LICENSE $(DATAPATH)/LICENSE
 	@install -v -D -m 0644 README.md $(DATAPATH)/README.md
-	@install -D -m 0644 $(DOC)/$(MANFILE) $(MANPATH)/$(MANFILE)
+	@install -v -D -m 0644 $(DOC)/$(MANFILE) $(MANPATH)/$(MANFILE)
 
 uninstall:
 	$(info )
