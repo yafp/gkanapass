@@ -5,7 +5,7 @@
 # Function:		a python based password generator with focus on japanese/kana-style passwords
 #               https://en.wikipedia.org/wiki/Kana
 #               https://xkcd.com/936/
-# Date:			20160929.01
+# Date:			20171221.01
 # Author: 		yafp
 
 
@@ -26,7 +26,7 @@ import sys			# for handling arguments
 appName="gkanapass"
 appDescription="gkanapass is a python based password generator influenced by kana"
 appDevURL="https://github.com/yafp/gkanapass"
-appVersion="20160929.05"
+appVersion="20171221.01"
 
 
 #=========================     FUNCTIONS     ===================================
@@ -48,7 +48,7 @@ def printHead(title):
 def validateArguments():
 	#print 'Number of arguments:', len(sys.argv), 'arguments.'
 	#print 'Argument List:', str(sys.argv)
-	
+
 	pwLengthInfo="unset"
 
 	if len(sys.argv) < 2: # no user argument available
@@ -89,31 +89,31 @@ def generateKanaPass(length):
 	charPoolNumbers = ['1','2','3','4','5','6','7','8','9','0']			# numbers
 	charPoolSpecials = ['#','+','-','_','.','?','!',"&",";","@","<",">","~","%","$","|"]				# specials
 
-	for i in range (0,10): # generate 10 passwords
+	for i in range (01,11): # generate 10 passwords
 		generatedPassword='' # start with an empty password
 
 		for dummy in range (0,length): # build single_generateRandomPair
 			randomNumber=random.randrange(1,100) # generate a random number between 1 and 100 - based on that we randomize the password-generation
 
-			if randomNumber>95: 		# lowercase consonants kana + special
+			if randomNumber>90: 		# lowercase consonants kana + special
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolSpecials)
 
-			elif randomNumber>90:		# uppercase consonants similar & uppercase vocal
+			elif randomNumber>85:		# uppercase consonants similar & uppercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar).upper()+random.choice(charPoolVocal).upper()
 
-			elif randomNumber>85: 		# uppercase consonants kana + number
+			elif randomNumber>75: 		# uppercase consonants kana + number
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana).upper()+random.choice(charPoolNumbers)
 
-			elif randomNumber>80: 		# lowercase consonants kana + number
+			elif randomNumber>65: 		# lowercase consonants kana + number
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantKana)+random.choice(charPoolNumbers)
 
-			elif randomNumber>75:		# uppercase consonants kana & lowercase vocal
+			elif randomNumber>55:		# uppercase consonants kana & lowercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar).upper()+random.choice(charPoolVocal)
 
-			elif randomNumber>60:		# lowercase consonants similar & lowercase vocal
+			elif randomNumber>45:		# lowercase consonants similar & lowercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal)
 
-			elif randomNumber>50:		# lowercase kana similar & uppercase vocal
+			elif randomNumber>35:		# lowercase kana similar & uppercase vocal
 				generatedPassword=generatedPassword+random.choice(charPoolConsonantSimilar)+random.choice(charPoolVocal).upper()
 
 			else: 						# lowercase consonants kana & lowercase vocal
@@ -124,7 +124,8 @@ def generateKanaPass(length):
 		generatedPassword=generatedPassword[:int(float(length))]
 
 		# output the generated and cutted password
-		print (str(i) + ": " + generatedPassword)
+		print ("  "+str(i).zfill(2) + ": " + generatedPassword) # zfill for leading zero
+	print("\n") # final newline after password list
 
 
 def displayHelp():
@@ -134,11 +135,11 @@ def displayHelp():
 	print ("\t"+appDescription)
 	print ("\t"+appDevURL+"\n")
 	print ("CORE:")
-	print ("\tpkanapass\tGenerates 10 passwords with default length (10)")
-	print ("\tpkanapass 14\tGenerates 10 passwords with user-defined length (14)")
+	print ("\tgkanapass\tGenerates 10 passwords with default length (10)")
+	print ("\tgkanapass 14\tGenerates 10 passwords with user-defined length (14)")
 	print ("\nMISC:")
-	print ("\tpkanapass -h\tDisplay this help dialog")
-	print ("\tpkanapass -v\tDisplay application version")
+	print ("\tgkanapass -h\tDisplay this help dialog")
+	print ("\tgkanapass -v\tDisplay application version")
 
 
 def displayVersion():
